@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>EmployeeDetailsServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.EmployeeDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLowTemperaCountservlet</servlet-name>
+        <servlet-class>za.ac.tut.web.GetLowTemperaCountservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetHighTemperesCountServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.GetHighTemperesCountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeDetailsServlet</servlet-name>
+        <url-pattern>/EmployeeDetailsServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLowTemperaCountservlet</servlet-name>
+        <url-pattern>/GetLowTemperaCountservlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetHighTemperesCountServlet</servlet-name>
+        <url-pattern>/GetHighTemperesCountServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>OfficerConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>OfficerResource</web-resource-name>
+            <description>Resource available to an officer.</description>
+            <url-pattern>/capture_employee_details.html</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Manager</web-resource-name>
+            <description>Resource available to a manager</description>
+            <url-pattern>/get_high_temp_cnt.html</url-pattern>
+            <url-pattern>/get_low_temp_cnt.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>The user must be authenticated first</description>
+            <role-name>Officer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ManagerConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Manager Resource</web-resource-name>
+            <description/>
+            <url-pattern>/get_high_temp_cnt.html</url-pattern>
+            <url-pattern>/get_low_temp_cnt.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Authenticate the user.</description>
+            <role-name>Manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/login_error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>The Security Officer role.</description>
+        <role-name>Officer</role-name>
+    </security-role>
+    <security-role>
+        <description>The Manager role.</description>
+        <role-name>Manager</role-name>
+    </security-role>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/access_denied.html</location>
+    </error-page>
+</web-app>

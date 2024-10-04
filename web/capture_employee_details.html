@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Capture employee details</h1><!-- comment -->
+        <p>
+            Please enter employee details below:
+        </p>
+        <form action="EmployeeDetailsServlet.do" method="POST">
+            <table border="1">
+               
+                <tbody>
+                    <tr>
+                        <td>Temperture reading:</td>
+                        <td><input type="text" name="temp_value" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td><input type="text" name="id" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Employee name:</td>
+                        <td><input type="text" name="name" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </body>
+</html>
